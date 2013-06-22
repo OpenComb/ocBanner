@@ -1,0 +1,119 @@
+<form action="/ocbanner/Banner:save?_id={@_id}" class="form-horizontal" collection="ocbanner/banners" autoIncreaseId="id" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <div id="legend" class="">
+            <legend class="">
+                <if condition="@$model._id">
+                    编辑
+                <else />
+                    新建
+                </if>
+                Banner
+            </legend>
+        </div>
+
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="{@ type=='pic'? 'active':''} banner-type" banner-type="pic"><a href="javascript:void(0)" data-toggle="tab">图片</a></li>
+                <li class="{@ type=='turning'? 'active':''} banner-type" banner-type="turning"><a href="javascript:void(0)" data-toggle="tab">随机</a></li>
+            </ul>
+        </div>
+
+        <if condition="@$model.id!==undefined">
+        <div class="control-group for-pic for-text for-html for-turning">
+
+            <!-- Text input-->
+            <label class="control-label" for="input01">ID</label>
+            <div class="controls">
+                {@$model.id}
+            </div>
+        </div>
+        </if>
+
+        <div class="control-group for-pic for-text for-html for-turning">
+
+            <!-- Text input-->
+            <label class="control-label" for="input01">名称</label>
+            <div class="controls">
+                <input type="text" placeholder="" class="input-xlarge" name="name" value="未命名Banner" >
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group for-pic">
+            <label class="control-label">本地图片(上传)</label>
+
+            <!-- File Upload -->
+            <div class="controls">
+                <input class="input-file" id="fileInput" type="file" name="imagefile">
+
+                <if condition="@$model.imagefile">
+                <div>
+                    <img src="/{@imagefile}" />
+                </div>
+                </if>
+            </div>
+        </div>
+
+
+        <div class="control-group for-pic">
+
+        <!-- Text input-->
+        <label class="control-label" for="input01">引用图片(URL)</label>
+        <div class="controls">
+            <input type="text" placeholder="http://" class="input-xlarge" name="imageurl">
+            <p class="help-block"></p>
+        </div>
+    </div>
+        <div class="control-group for-text for-pic">
+
+        <!-- Text input-->
+        <label class="control-label" for="input01">点击链接</label>
+        <div class="controls">
+            <input type="text" placeholder="http://" class="input-xlarge" name="url">
+            <p class="help-block"></p>
+        </div>
+    </div>
+
+        <div class="control-group for-turning" style="display:none">
+
+            <label class="control-label" for="input01">
+                        轮播Banner：
+            </label>
+
+            <div class="banners controls">
+                <foreach for="@$model['banner-id']" var="bannerid" key="bannerIdx">
+                <div class="banner-item">
+                    ID：<input type="text" class="input-xlarge" name="banner-id" style="width:100px" value="@bannerid" />
+                    权重：<input type="text" class="input-xlarge" name="banner-prior" style="width:60px" value="@$model['banner-prior'][bannerIdx]" />
+                    <if condition="@bannerIdx"><button class="btnDelBanner btn btn-danger" type="button">- 删除</button></if>
+                </div>
+                </foreach>
+
+            </div>
+
+        </div>
+
+        <div class="control-group for-pic for-text for-html for-turning">
+            <label class="control-label"></label>
+
+            <!-- Button -->
+            <div class="controls">
+                <input type="hidden" name="type" value="@type" />
+                <button type="reset" class="btn btn-inverse">取消</button>
+                <button type="submit" class="btn btn-success">保存</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+
+
+<div class="banner-item-template" style="display:none">
+    <div class="banner-item">
+        ID：<input type="text" class="input-xlarge" name="banner-id" style="width:100px" value="@''">
+        权重：<input type="text" class="input-xlarge" name="banner-prior" style="width:60px" value="1">
+        <button class="btnDelBanner btn btn-danger" type="button">- 删除</button>
+    </div>
+
+    <button class="btnAddBanner btn btn-success" type="button">+ 添加</button>
+</div>

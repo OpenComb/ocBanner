@@ -1,0 +1,46 @@
+<include file="ocframework/templates/paginator.html" model="@page" model.url="/ocbanner/Banner:list?page=%pagenum%" />
+
+
+<ul class="media-list">
+<foreach for="@page.docs" var="doc">
+
+    <li class="media banner-item" _id={@doc._id}>
+
+        <if condition="@doc.imagefile">
+            <img class="media-object" src="/{@doc.imagefile}" style="width:500px"/>
+        <else />
+              无图片
+        </if>
+
+        <div class="media-body">
+            <button class="btn btn-small btn-danger delete-banner">删除</button>
+            <a class="btn btn-small btn-success stay" href="/ocbanner/Banner?_id={@doc._id}">编辑</a>
+            ID：{@doc.id}
+            名称：{@doc.name}
+        </div>
+
+        <div>
+            <textarea style="width:700px;height:30px"><iframe src="http://{@host||''}/ocbanner/Banner:display?id={@doc.id}" width="400px" height="50px"></iframe></textarea>
+        </div>
+        <hr />
+    </li>
+
+</foreach>
+</ul>
+
+
+<div class="deleteConfirm modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">正在删除Banner……</h3>
+    </div>
+    <div class="modal-body">
+        <p>确定要删除指定的Banner吗？</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+        <button class="btn btn-danger btnConfirmDelete" data-dismiss="modal">删除</button>
+    </div>
+</div>
+
+<include file="ocframework/templates/paginator.html" model="@page" model.url="/ocbanner/Banner:list?page=%pagenum%" />
