@@ -13,8 +13,8 @@
 
         <div class="tabbable">
             <ul class="nav nav-tabs">
-                <li class="{@ type=='pic'? 'active':''} banner-type" banner-type="pic"><a href="javascript:void(0)" data-toggle="tab">图片</a></li>
-                <li class="{@ type=='turning'? 'active':''} banner-type" banner-type="turning"><a href="javascript:void(0)" data-toggle="tab">随机</a></li>
+                <li class="{@ $model.type=='pic'? 'active':''} banner-type" banner-type="pic"><a href="javascript:void(0)" data-toggle="tab">图片</a></li>
+                <li class="{@ $model.type=='turning'? 'active':''} banner-type" banner-type="turning"><a href="javascript:void(0)" data-toggle="tab">随机</a></li>
             </ul>
         </div>
 
@@ -98,7 +98,7 @@
 
             <!-- Button -->
             <div class="controls">
-                <input type="hidden" name="type" value="@type" />
+                <input type="hidden" name="type" value="@$model.type" />
                 <button type="reset" class="btn btn-inverse">取消</button>
                 <button type="submit" class="btn btn-success">保存</button>
             </div>
