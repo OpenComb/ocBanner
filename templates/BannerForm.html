@@ -1,3 +1,5 @@
+<link href="/ocframework/public/lib/3party/bootstrap-datepicker/css/datepicker.css">
+
 <form action="/ocbanner/Banner:save?_id={@_id}" class="form-horizontal" collection="ocbanner/banners" autoIncreaseId="id" method="post" enctype="multipart/form-data">
     <fieldset>
         <div id="legend" class="">
@@ -85,6 +87,8 @@
                 <div class="banner-item">
                     ID：<input type="text" class="input-xlarge" name="banner-id" style="width:100px" value="@bannerid" />
                     权重：<input type="text" class="input-xlarge" name="banner-prior" style="width:60px" value="@$model['banner-prior'][bannerIdx]" />
+                    时间：<input type="text" class="input-xlarge" name="banner-date-start" style="width:80px" value="@$model['banner-date-start'][bannerIdx]">
+                    - <input type="text" class="input-xlarge" name="banner-date-end" style="width:80px" value="@$model['banner-date-end'][bannerIdx]">
                     <if condition="@bannerIdx"><button class="btnDelBanner btn btn-danger" type="button">- 删除</button></if>
                 </div>
                 </foreach>
@@ -112,6 +116,8 @@
     <div class="banner-item">
         ID：<input type="text" class="input-xlarge" name="banner-id" style="width:100px" value="@''">
         权重：<input type="text" class="input-xlarge" name="banner-prior" style="width:60px" value="1">
+        时间：<input type="text" class="input-xlarge" name="banner-date-start" style="width:80px">
+        - <input type="text" class="input-xlarge" name="banner-date-end" style="width:80px">
         <button class="btnDelBanner btn btn-danger" type="button">- 删除</button>
     </div>
 
